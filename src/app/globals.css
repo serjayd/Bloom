@@ -1,0 +1,249 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "SF Pro Display",
+    sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: calc(var(--radius) - 10px);
+  --radius-md: calc(var(--radius) - 6px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 20px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+
+  --shadow-soft: var(--shadow-soft-v);
+  --shadow-lift: var(--shadow-lift-v);
+  --shadow-float: var(--shadow-float-v);
+}
+
+:root {
+  --radius: 1rem;
+
+  --background: #fafafa;
+  --surface: #f4f4f5;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #111111;
+  --muted: #f4f4f5;
+  --muted-foreground: #666666;
+  --accent: #4f7fff;
+  --accent-foreground: #ffffff;
+  --accent-soft: rgba(79, 127, 255, 0.1);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #ececec;
+  --border-strong: #dcdcdc;
+  --input: #ececec;
+  --ring: rgba(79, 127, 255, 0.35);
+
+  --shadow-soft-v:
+    0 1px 2px rgba(17, 17, 17, 0.04), 0 4px 16px rgba(17, 17, 17, 0.04);
+  --shadow-lift-v:
+    0 2px 4px rgba(17, 17, 17, 0.04), 0 12px 32px rgba(17, 17, 17, 0.08);
+  --shadow-float-v: 0 24px 70px rgba(17, 17, 17, 0.16);
+}
+
+.dark {
+  --background: #0b0b0d;
+  --surface: #141417;
+  --foreground: #f5f5f6;
+  --card: #131316;
+  --card-foreground: #f5f5f6;
+  --popover: #16161a;
+  --popover-foreground: #f5f5f6;
+  --primary: #f5f5f6;
+  --primary-foreground: #111111;
+  --secondary: #1c1c20;
+  --secondary-foreground: #f5f5f6;
+  --muted: #1c1c20;
+  --muted-foreground: #9a9aa2;
+  --accent: #6b93ff;
+  --accent-foreground: #0b0b0d;
+  --accent-soft: rgba(107, 147, 255, 0.14);
+  --success: #34d399;
+  --warning: #fbbf24;
+  --destructive: #f87171;
+  --destructive-foreground: #0b0b0d;
+  --border: #26262b;
+  --border-strong: #35353c;
+  --input: #26262b;
+  --ring: rgba(107, 147, 255, 0.4);
+
+  --shadow-soft-v: 0 1px 2px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lift-v:
+    0 2px 4px rgba(0, 0, 0, 0.5), 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-float-v: 0 24px 70px rgba(0, 0, 0, 0.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+  }
+}
+
+@utility surface-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft-v);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.35s ease;
+}
+
+@utility lift {
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.25s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift-v);
+  }
+}
+
+@utility card-hover {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift-v);
+    border-color: var(--color-border-strong);
+  }
+}
+
+@utility prose-reading {
+  font-size: 1.1875rem;
+  line-height: 1.85;
+  letter-spacing: -0.003em;
+  color: var(--color-foreground);
+
+  & p {
+    margin-block: 1.6em;
+  }
+  & h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-block: 2.4em 0.8em;
+  }
+  & h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-block: 2em 0.6em;
+  }
+  & ul {
+    margin-block: 1.4em;
+    padding-left: 1.3em;
+    list-style: disc;
+  }
+  & li {
+    margin-block: 0.5em;
+  }
+  & blockquote {
+    margin-block: 2em;
+    padding-left: 1.4em;
+    border-left: 2px solid var(--color-accent);
+    color: var(--color-muted-foreground);
+    font-style: italic;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-muted) 25%,
+    color-mix(in srgb, var(--color-muted) 60%, var(--color-card)) 50%,
+    var(--color-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-move 1.6s linear infinite;
+}
+
+@keyframes shimmer-move {
+  to {
+    background-position: -200% 0;
+  }
+}
