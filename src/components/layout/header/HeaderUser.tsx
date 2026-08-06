@@ -20,9 +20,10 @@ import { TUser } from "@/types/user";
 
 interface Props {
   user: TUser | null;
+  onNavigate?: () => void;
 }
 
-export function HeaderUser({ user }: Props) {
+export function HeaderUser({ user, onNavigate }: Props) {
   const router = useRouter();
 
   if (!user) return null;
@@ -65,21 +66,21 @@ export function HeaderUser({ user }: Props) {
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href={`/profile/${user.id}`}>
+            <Link href={`/profile/${user.id}`} onClick={onNavigate}>
               <User className="size-4" />
               <span>Profile</span>
             </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <Link href="/billing">
+            <Link href="/billing" onClick={onNavigate}>
               <CreditCardIcon className="size-4" />
               <span>Billing</span>
             </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <Link href="/settings">
+            <Link href="/settings" onClick={onNavigate}>
               <Settings className="size-4" />
               <span>Settings</span>
             </Link>

@@ -1,17 +1,18 @@
-import React from "react";
 import { HEADER_LINKS } from "./header-links";
 import NavItem from "./NavItem";
 
-export default function HeaderNav() {
+interface Props {
+  onNavigate?: () => void;
+}
+
+export default function HeaderNav({ onNavigate }: Props) {
   return (
-    <nav className="hidden md:block">
-      <ul className="flex gap-1 items-center">
-        {HEADER_LINKS.map((item) => (
-          <li key={item.label}>
-            <NavItem item={item} />
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <ul className="flex flex-col lg:flex-row gap-3 lg:gap-1 items-start lg:items-center">
+      {HEADER_LINKS.map((item) => (
+        <li key={item.label}>
+          <NavItem item={item} onNavigate={onNavigate} />
+        </li>
+      ))}
+    </ul>
   );
 }
