@@ -11,7 +11,7 @@ export default function Logo({ name }: Props) {
       href="/"
       className="group flex items-center gap-3 transition-opacity hover:opacity-90"
     >
-      <div className="relative flex size-10 items-center justify-center overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:shadow-md">
+      <div className="relative flex size-9 items-center justify-center overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:shadow-md">
         <Flower className="relative z-10 size-5 text-amber-600 transition-transform duration-300 group-hover:scale-110 dark:text-amber-500" />
 
         {/* Shine */}
