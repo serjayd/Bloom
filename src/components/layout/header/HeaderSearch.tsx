@@ -15,7 +15,7 @@ export default function HeaderSearch() {
       <Button
         onClick={() => setOpen(true)}
         variant="outline"
-        className="lift h-10 w-64 justify-start gap-2 rounded-xl px-3 text-muted-foreground hover:bg-muted transition-all"
+        className="lift h-10 w-full lg:w-64 justify-start gap-2 rounded-xl px-3 text-muted-foreground hover:bg-muted transition-all"
       >
         <Search className="size-4" />
         <span>Search</span>

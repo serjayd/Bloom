@@ -3,12 +3,14 @@ import Link from "next/link";
 
 interface Props {
   name?: string;
+  onNavigate?: () => void;
 }
 
-export default function Logo({ name }: Props) {
+export default function Logo({ name, onNavigate }: Props) {
   return (
     <Link
       href="/"
+      onClick={onNavigate}
       className="group flex items-center gap-3 transition-opacity hover:opacity-90"
     >
       <div className="relative flex size-9 items-center justify-center overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:shadow-md">

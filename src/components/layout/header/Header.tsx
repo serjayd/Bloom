@@ -7,6 +7,7 @@ import { HeaderUser } from "./HeaderUser";
 import { getSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import HeaderOpenButton from "./HeaderOpenButton";
 
 export default async function Header() {
   const session = await getSession();
@@ -18,8 +19,10 @@ export default async function Header() {
       <Container>
         <div className="flex h-16 items-center gap-8 justify-between">
           <Logo name="Bloom" />
-          <HeaderNav />
-          <div className="ml-auto flex items-center gap-2">
+          <nav className="hidden lg:block">
+            <HeaderNav />
+          </nav>
+          <div className="hidden lg:flex ml-auto items-center gap-2">
             {session ? (
               <HeaderSearch />
             ) : (
@@ -36,8 +39,9 @@ export default async function Header() {
 
             <ModeToggle />
 
-            {session && <HeaderUser user={session.user} />}
+            {session && <HeaderUser user={session?.user} />}
           </div>
+          <HeaderOpenButton user={session?.user} />
         </div>
       </Container>
     </header>

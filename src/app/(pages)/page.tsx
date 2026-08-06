@@ -1,7 +1,10 @@
+import Container from "@/components/shared/Container";
+import Hero from "@/features/home/components/Hero";
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>LandingPage</h1>
-    </div>
+    <Container>
+      <Hero />
+    </Container>
   );
 }

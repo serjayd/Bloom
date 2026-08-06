@@ -9,9 +9,10 @@ interface Props {
     href: string;
     label: string;
   };
+  onNavigate?: () => void;
 }
 
-export default function NavItem({ item }: Props) {
+export default function NavItem({ item, onNavigate }: Props) {
   const pathname = usePathname();
 
   const isActive = pathname === item.href;
@@ -19,8 +20,9 @@ export default function NavItem({ item }: Props) {
   return (
     <Link
       href={item.href}
+      onClick={onNavigate}
       className={cn(
-        "rounded-lg px-3 py-1.5 text-sm transition-colors font-medium",
+        "rounded-lg px-3 py-1.5 text-lg lg:text-sm transition-colors font-medium",
         isActive
           ? "bg-muted text-foreground"
           : "text-muted-foreground hover:bg-muted hover:text-foreground",
