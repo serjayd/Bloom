@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import Container from "@/components/shared/Container";
+import Container from "@/shared/ui/Container";
 import { getSession } from "@/lib/session";
 
 interface Props {

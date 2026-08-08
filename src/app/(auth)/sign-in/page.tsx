@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ArrowLeft } from "lucide-react";
-import SignInForm from "@/features/auth/components/SignInForm";
+import SignInForm from "@/features/auth/ui/SignInForm";
 
 export default function SignInPage() {
   return (

@@ -1,8 +1,8 @@
-import Container from "@/components/shared/Container";
-import Logo from "@/components/shared/Logo";
+import Container from "@/shared/ui/Container";
+import Logo from "@/shared/ui/Logo";
 import HeaderNav from "./HeaderNav";
 import HeaderSearch from "./HeaderSearch";
-import { ModeToggle } from "@/components/shared/ModeToggle";
+import { ModeToggle } from "@/shared/ui/ModeToggle";
 import { HeaderUser } from "./HeaderUser";
 import { getSession } from "@/lib/session";
 import { Button } from "@/components/ui/button";

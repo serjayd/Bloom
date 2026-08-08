@@ -1,5 +1,5 @@
-import Logo from "@/components/shared/Logo";
-import { ModeToggle } from "@/components/shared/ModeToggle";
+import Logo from "@/shared/ui/Logo";
+import { ModeToggle } from "@/shared/ui/ModeToggle";
 import {
   Sheet,
   SheetContent,
