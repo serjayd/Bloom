@@ -17,7 +17,7 @@ export async function createPost(data: unknown) {
     };
   }
 
-  const { title, collectionId, content } = parsed.data;
+  const { title, collectionId, content, bannerUrl } = parsed.data;
 
   try {
     const session = await getSession();
@@ -38,6 +38,7 @@ export async function createPost(data: unknown) {
       data: {
         title,
         slug,
+        bannerUrl,
         content: content as Prisma.InputJsonValue,
 
         type: "PUBLISHED",

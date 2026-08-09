@@ -6,6 +6,7 @@ export const postSchema = z.object({
   collectionId: z.string().min(1, "Please select a collection"),
 
   content: z.array(z.unknown()),
+  bannerUrl: z.string().url().optional(),
 });
 
 export type PostFormValues = z.infer<typeof postSchema>;

@@ -37,6 +37,7 @@ model Post {
   id           String     @id @default(cuid())
   title        String
   slug         String     @unique
+  bannerUrl    String?
 
   content      Json
   type         PostType   @default(DRAFT)

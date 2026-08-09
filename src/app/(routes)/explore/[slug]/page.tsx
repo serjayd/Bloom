@@ -8,6 +8,7 @@ import { formatDate } from "@/utils/dateFormatter";
 import { getReadingTime } from "@/utils/getReadingTime";
 import { PartialBlock } from "@blocknote/core";
 import { Clock } from "lucide-react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -44,15 +45,15 @@ export default async function SinglePostPage({ params }: Props) {
   return (
     <div className="min-h-screen py-10">
       <Container>
-        <div className="grid lg:grid-cols-4 gap-8 items-start justify-items-end">
-          <section className="w-full col-span-3">
-            <span className="border border-accent/20 px-2 py-0.5 rounded-full text-xs text-accent bg-accent/10 mb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start justify-items-end">
+          <section className="w-full lg:col-span-3">
+            <span className="border border-accent/20 px-2 py-0.5 rounded-full text-xs text-accent bg-accent/10 mb-4 block w-fit">
               {post.collection.name}
             </span>
-            <h1 className="mt-4 text-4xl font-semibold leading-[1.12] mb-8">
+            <h1 className="text-4xl font-semibold leading-[1.12] mb-2">
               {post.title}
             </h1>
-            <div className="flex items-center gap-2  border-b border-border py-4 mb-4">
+            <div className="flex items-center gap-2  border-b border-border py-4">
               <Avatar>
                 <AvatarImage
                   src={post.author.image ?? undefined}
@@ -70,10 +71,18 @@ export default async function SinglePostPage({ params }: Props) {
                 </p>
               </div>
             </div>
-
+            {post.bannerUrl && (
+              <Image
+                src={post.bannerUrl}
+                alt={post.title}
+                width={1920}
+                height={1080}
+                className="w-full rounded-2xl object-cover shadow-md my-4"
+              />
+            )}
             <PostContent content={post.content as PartialBlock[]} />
           </section>
-          <div className="sticky top-16 space-y-4 max-w-sm w-full">
+          <div className="sticky top-16 space-y-4 lg:max-w-sm w-full">
             <TableOfContent content={post.content as PartialBlock[]} />
             <RelatedPosts collectionId={post.collectionId} />
           </div>

@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createPost } from "../actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { UploadButton } from "@/utils/uploadthing";
 
 interface Props {
   collections: {
@@ -45,6 +46,7 @@ export default function CreatePostForm({ collections }: Props) {
       title: "",
       collectionId: "",
       content: [],
+      bannerUrl: undefined,
     },
   });
 
@@ -76,7 +78,44 @@ export default function CreatePostForm({ collections }: Props) {
           {isSubmitting ? "Publishing" : "Publish"}
         </Button>
       </div>
+      <Controller
+        name="bannerUrl"
+        control={control}
+        render={({ field }) => (
+          <div className="space-y-3">
+            <FieldLabel>Post Banner (optional )</FieldLabel>
 
+            <UploadButton
+              endpoint="imageUploader"
+              className="border-2 border-dashed border-border rounded-xl p-8"
+              onClientUploadComplete={(res) => {
+                const file = res?.[0];
+
+                if (!file) {
+                  return;
+                }
+
+                field.onChange(file.ufsUrl);
+
+                toast.success("Banner uploaded");
+              }}
+              onUploadError={(error) => {
+                toast.error(error.message);
+              }}
+            />
+
+            {field.value && (
+              <p className="text-xs text-muted-foreground">
+                Banner uploaded successfully
+              </p>
+            )}
+
+            {errors.bannerUrl && (
+              <FieldError>{errors.bannerUrl.message}</FieldError>
+            )}
+          </div>
+        )}
+      />
       <Field>
         <FieldLabel htmlFor="title">Post Title</FieldLabel>
         <Input
