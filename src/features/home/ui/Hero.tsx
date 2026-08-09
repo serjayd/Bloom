@@ -2,28 +2,7 @@ import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-
-const COLLECTIONS = [
-  "Frontend",
-  "Backend",
-  "Databases",
-  "DevOps",
-  "Artificial Intelligence",
-  "Mobile Development",
-  "Desktop Development",
-  "Game Development",
-  "Programming Languages",
-  "Security",
-  "Testing",
-  "Git & Collaboration",
-  "Software Architecture",
-  "UI / UX",
-  "Tools",
-  "Career",
-  "Algorithms & Computer Science",
-  "Networking",
-  "Operating Systems",
-];
+import { COLLECTIONS } from "@/features/posts/constants";
 
 export default function Hero() {
   return (
@@ -47,7 +26,7 @@ export default function Hero() {
 
         <div className="mb-10 flex items-center gap-3">
           <Button size="lg" className="lift" asChild>
-            <Link href="/write">Start Writing</Link>
+            <Link href="/editor">Start Writing</Link>
           </Button>
 
           <Button size="lg" variant="outline" className="lift" asChild>
