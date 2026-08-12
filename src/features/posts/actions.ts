@@ -71,3 +71,53 @@ export async function createPost(data: unknown) {
     };
   }
 }
+
+export async function deletePost(postId: string) {
+  try {
+    const session = await getSession();
+
+    if (!session) {
+      return {
+        success: false,
+        error: "Unauthorized",
+      };
+    }
+
+    const post = await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (!post) {
+      return {
+        success: false,
+        error: "Post not found",
+      };
+    }
+
+    if (post.authorId !== session.user.id) {
+      return {
+        success: false,
+        error: "You can only delete your own posts",
+      };
+    }
+
+    await prisma.post.delete({
+      where: {
+        id: postId,
+      },
+    });
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+
+    return {
+      success: false,
+      error: "Failed to delete post",
+    };
+  }
+}

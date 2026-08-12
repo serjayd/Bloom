@@ -1,6 +1,6 @@
 "use client";
 
-import { CreditCardIcon, LogOutIcon, Settings, User } from "lucide-react";
+import { LogOutIcon, Settings, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -69,13 +69,6 @@ export function HeaderUser({ user, onNavigate }: Props) {
             <Link href={`/profile/${user.id}`} onClick={onNavigate}>
               <User className="size-4" />
               <span>Profile</span>
-            </Link>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem asChild>
-            <Link href="/billing" onClick={onNavigate}>
-              <CreditCardIcon className="size-4" />
-              <span>Billing</span>
             </Link>
           </DropdownMenuItem>
 

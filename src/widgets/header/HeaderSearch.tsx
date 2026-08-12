@@ -8,8 +8,6 @@ import HeaderSearchModal from "./HeaderSearchModal";
 export default function HeaderSearch() {
   const [open, setOpen] = useState(false);
 
-  // Filter data return filtered Articles, Topics, Authours, Search to Header Search Modal
-
   return (
     <>
       <Button

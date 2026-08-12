@@ -2,11 +2,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import CommentsSection from "@/features/comments/ui/CommentsSection";
 import ShareButton from "@/features/comments/ui/ShareButton";
+import DeletePostButton from "@/features/explore/ui/DeletePostButton";
 import LikeButton from "@/features/likes/ui/LikeButton";
 import { PostContent } from "@/features/posts/ui/PostContentWrapper";
 import RelatedPosts from "@/features/posts/ui/RelatedPosts";
 import { TableOfContent } from "@/features/posts/ui/TableOfContent";
 import prisma from "@/lib/prisma";
+import { getSession } from "@/lib/session";
 import Container from "@/shared/ui/Container";
 import { formatDate } from "@/utils/dateFormatter";
 import { getReadingTime } from "@/utils/getReadingTime";
@@ -24,6 +26,12 @@ interface Props {
 
 export default async function SinglePostPage({ params }: Props) {
   const { slug } = await params;
+
+  const session = await getSession();
+
+  if (!session) {
+    return null;
+  }
 
   const post = await prisma.post.findUnique({
     where: {
@@ -44,6 +52,8 @@ export default async function SinglePostPage({ params }: Props) {
   if (!post) {
     notFound();
   }
+
+  const isOwner = post.author.id === session.user.id;
 
   const content = post.content as PartialBlock[];
 
@@ -81,17 +91,22 @@ export default async function SinglePostPage({ params }: Props) {
             {/* Article */}
             <article className="min-w-0 lg:col-span-3">
               {/* Collection */}
-              <Link
-                href={`/collections/${post.collection.id}`}
-                className="mb-5 inline-flex rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-medium text-accent transition-colors hover:bg-accent/15"
-              >
-                {post.collection.name}
-              </Link>
+              <div className="flex items-start justify-between">
+                <div>
+                  <Link
+                    href={`/learning?collection=${post.collection.slug}`}
+                    className="mb-5 inline-flex rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-medium text-accent transition-colors hover:bg-accent/15"
+                  >
+                    {post.collection.name}
+                  </Link>
 
-              {/* Title */}
-              <h1 className="max-w-4xl text-4xl font-semibold leading-[1.1] tracking-[-0.035em] text-foreground sm:text-5xl lg:text-6xl">
-                {post.title}
-              </h1>
+                  {/* Title */}
+                  <h1 className="max-w-4xl text-4xl font-semibold leading-[1.1] tracking-[-0.035em] text-foreground sm:text-5xl lg:text-6xl">
+                    {post.title}
+                  </h1>
+                </div>
+                {isOwner && <DeletePostButton postId={post.id} />}
+              </div>
 
               {/* Author / actions */}
               <div className="mt-8 flex flex-col gap-5 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
