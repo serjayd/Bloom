@@ -5,7 +5,7 @@ export const postSchema = z.object({
 
   collectionId: z.string().min(1, "Please select a collection"),
 
-  content: z.array(z.unknown()),
+  content: z.array(z.unknown()).min(1, "Post content is required"),
   bannerUrl: z.string().url().optional(),
 });
 

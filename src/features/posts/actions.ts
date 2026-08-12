@@ -29,10 +29,24 @@ export async function createPost(data: unknown) {
       };
     }
 
-    const slug = slugify(title, {
+    const baseSlug = slugify(title, {
       lower: true,
       strict: true,
     });
+
+    let slug = baseSlug;
+    let counter = 1;
+
+    while (
+      await prisma.post.findUnique({
+        where: {
+          slug,
+        },
+      })
+    ) {
+      counter++;
+      slug = `${baseSlug}-${counter}`;
+    }
 
     const post = await prisma.post.create({
       data: {

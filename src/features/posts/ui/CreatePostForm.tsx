@@ -155,14 +155,17 @@ export default function CreatePostForm({ collections }: Props) {
         )}
       </Field>
 
-      <Editor
-        onChange={(content) => {
-          setValue("content", content, {
-            shouldDirty: true,
-            shouldValidate: true,
-          });
-        }}
-      />
+      <Field>
+        <Editor
+          onChange={(content) => {
+            setValue("content", content, {
+              shouldDirty: true,
+              shouldValidate: true,
+            });
+          }}
+        />
+        {errors.content && <FieldError>{errors.content.message}</FieldError>}
+      </Field>
     </form>
   );
 }
