@@ -4,11 +4,7 @@ export const HEADER_LINKS = [
     href: "/explore",
   },
   {
-    label: "Collections",
-    href: "/collections",
-  },
-  {
-    label: "Feed",
-    href: "/feed",
+    label: "Learning Tree",
+    href: "/learning",
   },
 ];
