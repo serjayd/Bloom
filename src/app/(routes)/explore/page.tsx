@@ -26,6 +26,11 @@ export default async function ExplorePage() {
           slug: true,
         },
       },
+      _count: {
+        select: {
+          likes: true,
+        },
+      },
     },
   });
 

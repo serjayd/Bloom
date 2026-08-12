@@ -23,4 +23,7 @@ export type TPost = {
     slug: string;
     name: string;
   };
+  _count: {
+    likes: number;
+  };
 };

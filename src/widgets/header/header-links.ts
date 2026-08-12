@@ -11,8 +11,4 @@ export const HEADER_LINKS = [
     label: "Feed",
     href: "/feed",
   },
-  {
-    label: "Graph",
-    href: "/graph",
-  },
 ];

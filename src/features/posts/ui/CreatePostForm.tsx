@@ -83,7 +83,7 @@ export default function CreatePostForm({ collections }: Props) {
         control={control}
         render={({ field }) => (
           <div className="space-y-3">
-            <FieldLabel>Post Banner (optional )</FieldLabel>
+            <FieldLabel>Post Banner (optional)</FieldLabel>
 
             <UploadButton
               endpoint="imageUploader"
