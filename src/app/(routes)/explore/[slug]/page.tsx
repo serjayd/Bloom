@@ -30,7 +30,7 @@ export default async function SinglePostPage({ params }: Props) {
   const session = await getSession();
 
   if (!session) {
-    return null;
+    notFound();
   }
 
   const post = await prisma.post.findUnique({
