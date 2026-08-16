@@ -18,6 +18,7 @@ export default function Editor({ onChange }: Props) {
   return (
     <BlockNoteView
       editor={editor}
+      className="border border-border rounded-md"
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       onChange={() => {
         onChange?.(editor.document);

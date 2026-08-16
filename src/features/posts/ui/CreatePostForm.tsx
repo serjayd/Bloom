@@ -156,6 +156,7 @@ export default function CreatePostForm({ collections }: Props) {
       </Field>
 
       <Field>
+        <FieldLabel>Post Content</FieldLabel>
         <Editor
           onChange={(content) => {
             setValue("content", content, {

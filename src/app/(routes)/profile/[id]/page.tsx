@@ -160,7 +160,7 @@ export default async function ProfilePage({ params }: Props) {
 
               {isOwner && (
                 <Button className="mt-5" asChild>
-                  <Link href="/write">Write an article</Link>
+                  <Link href="/editor">Write an article</Link>
                 </Button>
               )}
             </div>
